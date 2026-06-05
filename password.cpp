@@ -6,10 +6,9 @@ using namespace std;
 void intro(string& password); // intro function
 void checks(bool& uppercase, bool& lowercase, bool& number, string& password); // checking function
 void errors(string& password, bool& correctLength, bool& number, bool& uppercase, bool& lowercase, bool& validPass); // errors function
-void validation(string& password, string& password2, bool& validPass);
+void validation(string& password, string& password2, bool& validPass); // validation function
 
-int main()
-{
+int main() {
     // declaring variables
     string password, password2;
     bool number, uppercase, lowercase;
