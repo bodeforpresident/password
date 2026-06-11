@@ -6,7 +6,6 @@ using namespace std;
 void intro(string& password); // intro function
 void checks(bool& uppercase, bool& lowercase, bool& number, string& password); // checking function
 void errors(string& password, bool& correctLength, bool& number, bool& uppercase, bool& lowercase, bool& validPass); // errors function
-void validation(string& password, string& password2, bool& validPass); // validation function
 
 int main() {
     // declaring variables
@@ -14,6 +13,7 @@ int main() {
     bool number, uppercase, lowercase;
     bool validPass = 0;
     bool correctLength = 0;
+    int fail = 0;    
     
     // do while loop
     do {
@@ -25,9 +25,23 @@ int main() {
     
     } while (!validPass);
     
-    validation(password, password2, validPass);
-    
+    if (validPass) {
+        cout << "Your password is valid! Please verify it by typing it again: ";
+        getline(cin, password2);
+        } while (password2!= password) {
+            fail++;            
+            cout << "That's wrong, enter it again. " << 3 - fail << " attempts remain\n";
+            getline(cin, password2);
+            if (fail == 3) {
+                cout << "Crashing program, too many incorrect guesses";
+                return 0;
+        }      
+        if (password2 == password) {
+            cout << "Password is valid";
+            return 0;
+        }        
     };
+}
     
 // defining functions
 void intro(string& password) { // intro function
@@ -78,16 +92,4 @@ void errors(string& password, bool& correctLength, bool& number, bool& uppercase
         uppercase = false;
         lowercase = false;
     }
-}
-
-void validation(string& password, string& password2, bool& validPass) { // validation function
-    if (validPass) {
-        cout << "Your password is valid! Please verify it by typing it again: ";
-        getline(cin, password2);
-        } while (password2!= password) {
-            cout << "That's wrong, enter it again\n";
-            getline(cin, password2);
-        }
-        cout << "-----------------------------------------------------\n";
-        cout << "Password verified";
 }
