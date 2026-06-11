@@ -46,7 +46,7 @@ int main() {
 // defining functions
 void intro(string& password) { // intro function
     cout << "-----------------------------------------------------\n";
-    cout << "Please enter a password. The password must contain:\n - at least 8 characters\n - at least one number\n - one uppercase letter\n - one lowercase letter.\n";
+    cout << "Please enter a password. The password must contain:\n - at least 8 characters\n - at most 20 characters\n - at least one number\n - one uppercase letter\n - one lowercase letter.\n";
     cout << "-----------------------------------------------------\n";
     getline(cin, password);
     cout << "-----------------------------------------------------\n";
@@ -68,7 +68,7 @@ void checks(bool& uppercase, bool& lowercase, bool& number, string& password) { 
 }
 
 void errors(string& password, bool& correctLength, bool& number, bool& uppercase, bool& lowercase, bool& validPass) { // error function
-    if (password.length() >= 8) {
+    if (password.length() >= 8 && password.length() <= 20) {
         correctLength = true;
     };
     if (uppercase == true &&lowercase == true && number == true && correctLength == true) {
@@ -84,7 +84,7 @@ void errors(string& password, bool& correctLength, bool& number, bool& uppercase
         cout << "You need a number\n";
     }
     if (!correctLength) {
-        cout << "You need 8 letters\n";
+        cout << "You have to at least 8 characters but at most 20 characters\n";
     }
     if (!validPass) {
         correctLength = false;
